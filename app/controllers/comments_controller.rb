@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
     @comments = Comment.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html { request.xhr? ? (render partial: 'comments') : (render 'index') }
       format.json { render json: @comments }
     end
   end
